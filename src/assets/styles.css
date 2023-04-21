@@ -9,6 +9,20 @@
   --system-message-text: #8696a0;
   --icon-ack: #53bdeb;
   --bubble-meta-icon: hsla(0,0%,100%,0.5);
+  --color-background: rgb(33,33,33);
+  --color-text-secondary: rgb(170,170,170);
+  --color-placeholders: #a2acb4;
+  --color-text: rgb(255,255,255);
+  --color-primary: #599f5c;
+  --color-primary-shade: #5a9959;
+  --border-radius-default: 0.75rem;
+  --color-borders-input: rgb(91,91,90);
+  --z-menu-bubble: 21;
+  --color-default-shadow: rgba(16,16,16,0.611765);
+  --color-background-compact-menu: rgba(33,33,33,0.866667);
+  --color-background-compact-menu-reactions: rgba(33,33,33,0.866667);
+  --color-background-compact-menu-hover: rgba(0,0,0,0.4);
+  --z-below: -1;
 }
 /* CSS styles for the chat list */
 .chat-list {
@@ -1309,4 +1323,458 @@ input{
 
 .msg-read{
   color: #333a2d;
+}
+
+
+/* Login Page css */
+.theme-white{
+  color:rgb(var(--white-rgb)) ;
+}
+.full-height{
+  background: var(--color-background);
+  height: 100vh;
+}
+
+.Transition{
+  position: relative;
+  width: 100%;
+}
+.Transition>.Transition__slide {
+  width: 100%;
+  height: 100%;
+  animation-fill-mode: forwards !important;
+}
+
+#auth-registration-form, #auth-phone-number-form, #auth-code-form, #auth-password-form, #auth-qr-form {
+  height: 100%;
+  overflow-y: auto;
+}
+
+#auth-registration-form, #auth-phone-number-form, #auth-code-form, #auth-password-form, #auth-qr-form {
+    height: 100%;
+    overflow-y: auto;
+}
+.custom-scroll, .custom-scroll-x {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0) rgba(0,0,0,0);
+    transition: scrollbar-color .3s ease;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+}
+
+.auth-form {
+  width: 100%;
+  max-width: 25.5rem;
+  margin: 0 auto;
+  padding: 6rem 1rem 1rem;
+  text-align: center;
+}
+
+.auth-form #logo {
+  background: url(./images/logo192.png) center no-repeat;
+  background-size: 100%;
+}
+
+.auth-form #logo, .auth-form .AvatarEditable label {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.auth-form h1 {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: rgb(var(--white-rgb));
+}
+.auth-form .note {
+  font-size: .875rem;
+  line-height: 1.35;
+  margin-bottom: 2.5rem;
+  color: var(--color-text-secondary);
+}
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+#auth-phone-number-form form {
+  min-height: 26.25rem;
+}
+
+#auth-phone-number-form .Button {
+  margin-top: 2.75rem;
+}
+
+.DropdownMenu {
+  position: relative;
+}
+
+.CountryCodeInput .input-group {
+  cursor: pointer;
+  z-index: 10;
+}
+
+.no-selection {
+  user-select: none;
+}
+
+.Menu.compact .bubble {
+  background: var(--color-background-compact-menu);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0.25rem 0;
+}
+
+.Menu .bubble.left {
+  left: var(--offset-x);
+}
+
+.Menu .bubble.top {
+  top: var(--offset-y);
+}
+
+.opacity-transition:not(.shown) {
+  display: none;
+}
+
+.opacity-transition:not(.open) {
+  opacity: 0;
+}
+
+.CountryCodeInput .bubble {
+  width: 100%;
+  max-height: 23.5rem;
+  overflow-y: auto;
+  transform-origin: top center !important;
+  transform: scale(0.95);
+}
+
+.CountryCodeInput .bubble.open {
+  transform: scaleY(1);
+}
+
+.custom-scroll, .custom-scroll-x {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0) rgba(0,0,0,0);
+  transition: scrollbar-color .3s ease;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: auto;
+}
+
+.opacity-transition {
+  opacity: 1;
+  transition: opacity .15s ease;
+}
+
+.Menu .bubble {
+  overflow: hidden;
+  display: block;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  position: absolute;
+  background-color: var(--color-background);
+  box-shadow: 0 0.25rem 0.5rem 0.125rem var(--color-default-shadow);
+  border-radius: var(--border-radius-default);
+  min-width: 13.5rem;
+  z-index: var(--z-menu-bubble);
+  overscroll-behavior: contain;
+  transform: scale(0.5);
+  transition: opacity .2s cubic-bezier(0.2, 0, 0.2, 1),transform .2s cubic-bezier(0.2, 0, 0.2, 1) !important;
+  --offset-y: calc(100% + 0.5rem);
+  --offset-x: 0;
+}
+
+input, button, select, optgroup, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button, input {
+  overflow: visible;
+}
+
+.form-control {
+  --border-width: 1px;
+  display: block;
+  width: 100%;
+  height: 3.375rem;
+  padding: calc(0.75rem - var(--border-width)) calc(0.9rem - var(--border-width));
+  border: var(--border-width) solid var(--color-borders-input);
+  border-radius: var(--border-radius-default) !important;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  outline: none;
+  transition: border-color .15s ease;
+  word-break: break-word;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.form-control:focus, .form-control.focus {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+  caret-color: var(--color-primary);
+  background-color: var(--color-background);
+}
+
+.form-control:focus+label, .form-control.focus+label {
+  color: var(--color-primary);
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+
+
+.input-group label {
+  display: block;
+  padding: 0 0.25rem;
+  position: absolute;
+  left: 0.75rem;
+  top: 0.9375rem;
+  background-color: var(--color-background);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-placeholders);
+  transition: transform .15s ease-out,color .15s ease-out;
+  cursor: text;
+  pointer-events: none;
+  transform-origin: left center;
+  white-space: nowrap;
+}
+
+.input-group.touched label, .input-group.error label, .input-group.success label, .input-group .form-control:focus+label, .input-group .form-control.focus+label {
+  transform: scale(0.75) translate(-0.5rem, -2.25rem);
+}
+
+.input-group>.form-control:focus, .input-group>.form-floating:focus-within, .input-group>.form-select:focus {
+  z-index: 0;
+}
+
+.input-group.touched label {
+  color: var(--color-text-secondary);
+}
+
+.form-control:focus+label, .form-control.focus+label {
+  color: var(--color-primary);
+}
+
+a, area, button, [role=button], input:not([type=range]), label, select, summary, textarea {
+  touch-action: manipulation;
+}
+
+.CountryCodeInput .input-group .css-icon-down {
+  position: absolute;
+  top: 1.125rem;
+  right: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--color-text-secondary);
+  border-top: 0;
+  border-left: 0;
+  transform: scaleY(1) rotate(45deg);
+  transition: color .2s ease,transform .2s ease,top .2s ease;
+}
+
+.CountryCodeInput .input-group .css-icon-down.open {
+  border-color: var(--color-primary);
+  transform: scaleY(-1) rotate(45deg);
+  top: 1.5rem;
+}
+
+.login .input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.CountryCodeInput .input-group {
+  cursor: pointer;
+  z-index: 10;
+}
+
+.login .Checkbox {
+  display: block;
+  position: relative;
+  padding-left: 4.5rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
+
+.login .Checkbox input {
+  position: absolute;
+  z-index: var(--z-below);
+  opacity: 0;
+}
+
+.login input[type=radio],.login input[type=checkbox] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.Checkbox input:checked~.Checkbox-main::before {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+.Checkbox .Checkbox-main::before {
+  border: 2px solid var(--color-borders-input);
+  border-radius: 0.25rem;
+  background-color: var(--color-background);
+  transition: border-color .1s ease,background-color .1s ease;
+}
+
+.Checkbox .Checkbox-main::before, .Checkbox .Checkbox-main::after {
+  pointer-events: none;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 1.1875rem;
+  top: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.Checkbox input:checked~.Checkbox-main::before {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+.Checkbox .Checkbox-main::before {
+  border: 2px solid var(--color-borders-input);
+  border-radius: 0.25rem;
+  background-color: var(--color-background);
+  transition: border-color .1s ease,background-color .1s ease;
+}
+
+.Checkbox input:checked~.Checkbox-main::after {
+  opacity: 1;
+}
+.Checkbox .Checkbox-main::after {
+  background: center no-repeat url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEzLjkuOEw1LjggOC45IDIuMSA1LjJjLS40LS40LTEuMS0uNC0xLjYgMC0uNC40LS40IDEuMSAwIDEuNkw1IDExLjJjLjQuNCAxLjEuNCAxLjYgMGw4LjktOC45Yy40LS40LjQtMS4xIDAtMS42LS41LS40LTEuMi0uNC0xLjYuMXoiIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==);
+  background-size: 0.875rem;
+  opacity: 0;
+  transition: opacity .1s ease;
+}
+
+.Checkbox .Checkbox-main .label {
+  display: flex;
+  align-items: center;
+  text-align: initial;
+  flex-wrap: wrap;
+  column-gap: 0.25rem;
+}
+
+.login .Button {
+  outline: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 3.5rem;
+  border: 0;
+  border-radius: var(--border-radius-default);
+  background-color: rgba(0,0,0,0);
+  background-size: cover;
+  padding: 0.625rem;
+  color: #fff;
+  line-height: 1.2;
+  cursor: pointer;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: background-color .15s,color .15s;
+  text-decoration: none !important;
+  --premium-gradient: linear-gradient(88.39deg, #6C93FF -2.56%, #976FFF 51.27%, #DF69D1 107.39%);
+}
+
+.Button:active, .Button.clicked, body.animation-level-0 .Button {
+  transition: none !important;
+}
+
+.Button.primary {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  --ripple-color: rgba(0, 0, 0, 0.08);
+}
+
+.Login .Button.primary:not(.disabled):not(:disabled):active,.Login .Button.primary:not(.disabled):not(:disabled).active,.Login .Button.primary:not(.disabled):not(:disabled):focus {
+  background-color: var(--color-primary-shade);
+}
+
+.MenuItem.compact {
+  font-size: .875rem;
+  margin: 0.125rem 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  width: auto;
+  font-weight: 500;
+  transform: scale(1);
+  transition: .15s ease-in-out transform;
+}
+
+.MenuItem {
+  width: 100%;
+  background: none;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  position: relative;
+  overflow: hidden;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  color: var(--color-text);
+  --ripple-color: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  unicode-bidi: plaintext;
+}
+
+.CountryCodeInput .country-flag {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.CountryCodeInput .country-flag .emoji {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  vertical-align: 4px;
+  margin: -0.5rem 0.125rem;
+}
+
+.CountryCodeInput .country-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 1rem;
+  text-align: left;
+}
+
+.CountryCodeInput .country-code {
+  margin-left: auto;
+  opacity: .5;
+  padding-right: 0.25rem;
+}
+
+@media (min-width: 600px){
+  .auth-form h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+  .auth-form .note {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
 }

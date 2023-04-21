@@ -6,6 +6,9 @@ import ChatScreen  from "./screen/ChatScreen";
 import UserProfile from './screen/UserProfile';
 import ProfileDetails from './screen/ProfileDetails';
 import io from 'socket.io-client';
+import ChatLeftHeader from './components/ChatLeftHeader';
+import ChatLists from './components/ChatLists';
+import Login from './screen/login';
 
 const socket = io.connect('http://localhost:3001');
 
@@ -107,6 +110,7 @@ function App() {
   const [selectedchat, setSelectedChat] = React.useState([]);
   const [viewUserProfile, setViewUserProfile] = React.useState(false);
   const [animateRightDrawer, setAnimateRightDrawer] = React.useState(false);
+  const [authenticate, setAuthentication] = React.useState(false);
 
   const handleSelectChat = (chat) => {
     setSelectedChat([]);
@@ -166,72 +170,40 @@ function App() {
   }
 
   return(
-    <div className={`chat-list ${viewUserProfile ? 'three': 'two'}`}>
-      <div className="chats">
-        {showProfile && <ProfileDetails DrawerClose={DrawerClose} showProfileOverlay={showProfileOverlay} closeProfileDrawer={closeProfileDrawer} setProfileOverlay={setProfileOverlay}/>}
-        <div className="chat-left-header">
-          <div className='profile-pic' onClick={()=>setShowProfile(true)}>
-            <img src='https://www.w3schools.com/w3images/avatar2.png' />
-          </div>
-          <div className='chat-own-options'>
-            <button className="options-button" onClick={() => alert('new chat')}>
-              <i className="fas fa-message"></i>
-            </button>
-            <button className="options-button" onClick={toggleOptionsShow}>
-              <i className="fas fa-ellipsis-v"></i>
-            </button>
-            <div className={showOptionsShow ? 'open options-dropdown' : 'options-dropdown'}>
-              <ul>
-                <li className={showOptionsShow ? 'show' : ''}>Settings</li>
-                <li className={showOptionsShow ? 'show' : ''}>Logout</li>
-              </ul>
-            </div>
-          </div>
+    <>
+      {authenticate ? 
+      <div className={`chat-list ${viewUserProfile ? 'three': 'two'}`}>
+        <div className="chats">
+          {showProfile && <ProfileDetails DrawerClose={DrawerClose} showProfileOverlay={showProfileOverlay} closeProfileDrawer={closeProfileDrawer} setProfileOverlay={setProfileOverlay}/>}
+          <ChatLeftHeader setShowProfile={setShowProfile} toggleOptionsShow={toggleOptionsShow} showOptionsShow={showOptionsShow} />
+          <ChatLists chats={chats} selectedchat={selectedchat} handleSelectChat={handleSelectChat}/>
         </div>
-        <div className="conv-list">
-          {chats.map((chat) => (
-            <div
-              key={chat.id}
-              className={`chat ${selectedchat.id === chat.id ? 'selected' : ''}`}
-              onClick={() => handleSelectChat(chat)}
-            >
-              <img src={chat.image} alt={chat.name} />
-              <div className="chat-info">
-                <div className='info-left'>
-                  <h3>{chat.name}</h3>
-                  <p>{chat.message}</p>
-                </div>
-                <div className='info-right'>
-                  <p>{chat.time}</p>
-                  {chat.unread && <div className="unread-indicator">1</div>}
-                </div>
+        {selectedchat.id > 0 ? (
+          <ChatScreen socket={socket} chat={selectedchat} onClose={() => selectedchat([])} openUserProfile={() =>  setViewUserProfile(true)} aniamteDrawer={animateRightDrawer}/>
+        ): 
+          <div className='empty-chatscreen'>
+            <div className='center-contents'>
+              <img src={chasScreenSvg}/>
+              <div className='title-head'>
+                <h1>Chat Web</h1>
+                <p>Send & recieve message without keeping your phone online.</p>
+                <p>Use chat web app seamlessly.</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-      {selectedchat.id > 0 ? (
-        <ChatScreen socket={socket} chat={selectedchat} onClose={() => selectedchat([])} openUserProfile={() =>  setViewUserProfile(true)} aniamteDrawer={animateRightDrawer}/>
-      ): 
-        <div className='empty-chatscreen'>
-          <div className='center-contents'>
-            <img src={chasScreenSvg}/>
-            <div className='title-head'>
-              <h1>Chat Web</h1>
-              <p>Send & recieve message without keeping your phone online.</p>
-              <p>Use chat web app seamlessly.</p>
-            </div>
           </div>
+        }
+        <div className={`drawer-right ${viewUserProfile ? 'open': ''}`}>
+          <span className='user-info user-profile'>
+            {viewUserProfile && 
+              <UserProfile chat={selectedchat} onClose={() => closeProfileDrawer('right')} aniamteDrawer={false}/>
+            }
+          </span>
         </div>
-      }
-      <div className={`drawer-right ${viewUserProfile ? 'open': ''}`}>
-        <span className='user-info user-profile'>
-          {viewUserProfile && 
-            <UserProfile chat={selectedchat} onClose={() => closeProfileDrawer('right')} aniamteDrawer={false}/>
-          }
-        </span>
       </div>
-    </div>
+       :
+      <Login />
+      }
+    </>
   )
 }
 
