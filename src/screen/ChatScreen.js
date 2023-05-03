@@ -9,6 +9,8 @@ const ChatScreen = (props) => {
     const [showSubmitbtn, setShowSubmitBtn] = React.useState(false);
     const toggleOptions = () => {
         setShowOptions(!showOptions);
+        // change title of page header dynamically
+        document.title = 'ChatApp - Show Option'
     };
 
   const [messages, setMessages] = React.useState(chat.messages);
